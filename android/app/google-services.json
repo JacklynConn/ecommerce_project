@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "542125062254",
+    "project_id": "e-commerce-project-aa5dd",
+    "storage_bucket": "e-commerce-project-aa5dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542125062254:android:2db7a20482f58546de4e7f",
+        "android_client_info": {
+          "package_name": "com.makmachecomerceit04e.ecommerce_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbySRaeMXd-PcPNq8eRvXo18XuUKY6JGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
