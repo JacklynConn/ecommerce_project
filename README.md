@@ -9,8 +9,8 @@
 8. ![6](https://github.com/JacklynConn/ecommerce_project/assets/148744079/6fb6431b-6fc2-495e-b402-a4c51d8e7bc5)
 9. ![7](https://github.com/JacklynConn/ecommerce_project/assets/148744079/dad44d4a-e6a5-49e2-8551-131df1994ab6)
 10. Use command below to check SHA-1 in command promt:
-    keytool -list -v -alias androiddebugkey -keystore "%USERPROFILE%\.android\debug.keystore"
-11. ![8](https://github.com/JacklynConn/ecommerce_project/assets/148744079/c305d284-78c1-4d2c-a827-f1a8cf305e84)
+11. keytool -list -v -alias androiddebugkey -keystore "%USERPROFILE%\.android\debug.keystore"
+12. ![8](https://github.com/JacklynConn/ecommerce_project/assets/148744079/c305d284-78c1-4d2c-a827-f1a8cf305e84)
 
 
 
