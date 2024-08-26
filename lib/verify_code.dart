@@ -25,7 +25,7 @@ class _VerifyCodeState extends State<VerifyCode> {
   BoxDecoration get _pinPutDecoration {
     return BoxDecoration(
       border: Border.all(color: Colors.green),
-      borderRadius: BorderRadius.circular(15.0),
+      borderRadius: BorderRadius.circular(10.0),
     );
   }
 
@@ -105,11 +105,9 @@ class _VerifyCodeState extends State<VerifyCode> {
                     Container(
                       height: 45,
                       width: 250,
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
-                        ),
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: InkWell(
                         onTap: () {
@@ -120,6 +118,7 @@ class _VerifyCodeState extends State<VerifyCode> {
                             "Verify code",
                             style: TextStyle(
                               color: Colors.white,
+                              fontSize: 16,
                               fontFamily: "osContent",
                               fontWeight: FontWeight.w500,
                             ),
