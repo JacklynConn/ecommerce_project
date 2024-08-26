@@ -39,6 +39,8 @@ dependencies:
   geolocator: ^10.1.0
   firebase_core: ^2.24.0
   firebase_auth: ^4.13.0
+  pinput: ^3.0.1
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:

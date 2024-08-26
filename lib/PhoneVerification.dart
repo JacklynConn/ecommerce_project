@@ -1,6 +1,8 @@
-
+import 'package:ecommerce_project/verify_code.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'helper/global.dart';
 
 class PhoneVerification extends StatefulWidget {
   const PhoneVerification({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class PhoneVerification extends StatefulWidget {
 class _PhoneVerificationState extends State<PhoneVerification> {
   final phoneCtrl = TextEditingController();
   String phoneNumber = "";
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +32,12 @@ class _PhoneVerificationState extends State<PhoneVerification> {
           children: [
             TextFormField(
               controller: phoneCtrl,
-              decoration: const InputDecoration(
-                label: Text("Phone Number"),
+              decoration: InputDecoration(
+                label: const Text("Phone Number"),
                 hintText: "Enter phone number",
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
               ),
               onChanged: (phone) {
                 setState(() {
@@ -51,9 +57,24 @@ class _PhoneVerificationState extends State<PhoneVerification> {
                 }
                 await FirebaseAuth.instance.verifyPhoneNumber(
                   phoneNumber: "+855$phoneNumber",
-                  verificationCompleted: (PhoneAuthCredential credential) {},
-                  verificationFailed: (FirebaseAuthException e) {},
-                  codeSent: (String verificationId, int? resendToken) {},
+                  verificationCompleted: (PhoneAuthCredential credential) {
+                  },
+                  verificationFailed: (FirebaseAuthException e) {
+                    alertMsg(
+                        context: context, content: "លេខទូរស័ព្ទមិនត្រឹមត្រូវ!"
+                    );
+                  },
+                  codeSent: (String verificationId, int? resendToken) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => VerifyCode(
+                          verificationId: verificationId,
+                          phoneNumber: phoneNumber,
+                        ),
+                      ),
+                    );
+                  },
                   codeAutoRetrievalTimeout: (String verificationId) {},
                 );
               },

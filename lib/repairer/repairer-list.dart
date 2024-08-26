@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../helper/global.dart';
@@ -28,24 +29,33 @@ class _RepairerListState extends State<RepairerList> {
   List repairerList = [];
 
   getRepairer() async {
-    var url = Uri.parse("$apiUrl/repairer");
-    var resp = await http.post(url, body: {
-      "service_id": widget.serviceId,
-      //6. Add these two variables
-      "latitude": widget.latitude.toString(),
-      "longitude": widget.longitude.toString(),
-    });
+   try{
+     var url = Uri.parse("$apiUrl/repairer");
+     var resp = await http.post(url, body: {
+       "service_id": widget.serviceId,
+       //6. Add these two variables
+       "latitude": widget.latitude.toString(),
+       "longitude": widget.longitude.toString(),
+     });
+     print(resp.statusCode);
+     if (resp.statusCode == 200) {
+       print(repairerList);
+       setState(() {
+         isGetRepairer = false;
+         repairerList = jsonDecode(resp.body);
 
-    if (resp.statusCode == 200) {
-      setState(() {
-        isGetRepairer = false;
-        repairerList = jsonDecode(resp.body);
-      });
-    }
+       });
+     }
+   }catch(e){
+     print("================================");
+     print(e);
+   }
   }
 
   @override
   Widget build(BuildContext context) {
+    print(widget.latitude);
+    print(widget.longitude);
     if (isGetRepairer) {
       getRepairer();
     }
@@ -72,10 +82,11 @@ class _RepairerListState extends State<RepairerList> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(17.0),
-                      child: Image.network(
-                        imageUrl + repairerList[i]['image'],
-                        width: 60,
-                        height: 60,
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl + repairerList[i]['image'], width: 60, height: 60,
+                        progressIndicatorBuilder: (context, url, downloadProgress) =>
+                            CircularProgressIndicator(value: downloadProgress.progress),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                     ),
                     Column(
@@ -87,7 +98,7 @@ class _RepairerListState extends State<RepairerList> {
                         ),
                         Text(repairerList[i]['phone']),
                         Text(repairerList[i]['sex']),
-                        Text(repairerList[i]['distance']),
+                        Text(repairerList[i]['distance'].toString()),
                       ],
                     ),
                   ],

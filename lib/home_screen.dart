@@ -63,8 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Location permissions are permanently denied, we cannot request permissions.');
     }
     Position position = await Geolocator.getCurrentPosition();
-    print(position.latitude);
-    print(position.longitude);
+
 
     setState(() {
       //2. Add these two lines
